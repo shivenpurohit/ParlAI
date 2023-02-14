@@ -1596,7 +1596,7 @@ class TreeSearch(object):
         if current_length < self.min_length:
             # penalize all eos probs to make it decode longer
             for hyp_id in range(logprobs.size(0)):
-                logprobs[hyp_id][self.eos] = neginf(logprobs.dtype)
+                logprobs[hyp_id][self.eos] = neginf(logprobs.dtype).to(logprobs.device)
 
         if self.scores is None:
             self.scores = torch.zeros(1).type_as(logprobs).to(logprobs.device)
@@ -1605,7 +1605,7 @@ class TreeSearch(object):
         # this is related to search which uses prior scores (self.scores) (e.g. beam)
         for hyp_id, token in enumerate(self.outputs[-1]):
             if token == self.eos:
-                self.scores[hyp_id] = neginf(self.scores.dtype)
+                self.scores[hyp_id] = neginf(self.scores.dtype).to(logprobs.device)
 
         # beam blocking
         if self.block_ngram > 0:
