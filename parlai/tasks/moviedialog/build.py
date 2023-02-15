@@ -38,7 +38,8 @@ def build(opt):
 
         # Download the data.
         RESOURCES[0].download_file(dpath)
-
+        
+        '''
         dpath2 = os.path.join(dpath, 'movie_dialog_dataset', 'task4_reddit')
         build_data.make_dir(dpath2)
 
@@ -57,6 +58,7 @@ def build(opt):
                     ) as write:
                         for line in read:
                             write.write(line.replace('|', ' __PIPE__ ') + '\n')
-
+        '''
+        
         # Mark the data as built.
         build_data.mark_done(dpath, version_string=version)
