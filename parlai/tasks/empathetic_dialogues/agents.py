@@ -74,7 +74,7 @@ class EmpatheticDialoguesTeacher(DialogTeacher):
     def setup_data(self, path):
 
         logging.debug('loading: ' + path)
-        with PathManager.open(path) as f:
+        with PathManager.open(path, encoding='UTF-8') as f:
             df = f.readlines()
 
         turn_idx = 1
