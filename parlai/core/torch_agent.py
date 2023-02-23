@@ -2037,6 +2037,8 @@ class TorchAgent(ABC, Agent):
             ):  # force save dictionary
                 # TODO: Look into possibly overriding opt('dict_file') with new path
                 logging.debug(f'Saving dictionary to {model_dict_path}')
+                print("type --", type(self.dict))
+                print(self.dict)
                 self.dict.save(model_dict_path, sort=False)
             states = self.state_dict()
             if states:  # anything found to save?
