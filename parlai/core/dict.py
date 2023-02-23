@@ -677,7 +677,8 @@ class DictionaryAgent(Agent):
 
         # save opt file
         print(self.opt)
-        print("type", self.opt)
+        print("type", type(self.opt))
+        print("convert", dict(self.opt))
         with PathManager.open(filename + '.opt', 'w', encoding='utf-8') as handle:
             json.dump(self.opt, handle, indent=4)
         # save the byte level bpe model file as well
