@@ -121,16 +121,12 @@ class ReDialTeacher(FixedDialogTeacher):
         # sometimes the first speaker is at the end with no reply
         if len(self.episodes[episode_idx]) % 2 == 1:
             final_speaker_idx -= 1
-        try:
-            labels = [self.episodes[episode_idx][text_idx + 1]]
-            print(self.episodes[episode_idx].__len__(), text_idx+1)
-        except:
-            print('--'*10)
-            print(self.episodes.__len__(), self.episodes)
-            print(episode_idx)
-            print(self.episodes[episode_idx].__len__(), self.episodes[episode_idx])
-            print(text_idx+1)
-            print('--'*10)
+            
+        # implement padding if only one utternace is there in an episode
+        if self.episodes[episode_idx].__len__() == 1:
+            print('This episode has only one utterance')
+            self.episodes[episode_idx].append('Hey')
+
         labels = [self.episodes[episode_idx][text_idx + 1]]
         episode_done = text_idx >= final_speaker_idx
         action = {
