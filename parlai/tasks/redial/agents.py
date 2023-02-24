@@ -123,6 +123,7 @@ class ReDialTeacher(FixedDialogTeacher):
             final_speaker_idx -= 1
         try:
             labels = [self.episodes[episode_idx][text_idx + 1]]
+            print(self.episodes[episode_idx].__len__(), text_idx+1)
         except:
             print('--'*10)
             print(self.episodes.__len__(), self.episodes)
